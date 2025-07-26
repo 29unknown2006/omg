@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>huh!</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: rgb(201, 63, 83);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .heading {
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      font-style: italic;
+      animation: heartbeat 1.5s infinite, glow 1.5s infinite alternate;
+      z-index: 1;
+      text-align: center;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25%, 75% { transform: scale(1.05); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #f0f;
+      }
+      to {
+        text-shadow: 0 0 15px #fff, 0 0 30px #f0f, 0 0 45px #f0f;
+      }
+    }
+
+    img {
+      margin-top: 20px;
+      z-index: -2;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 10s linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(30px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="heading">I LOVE YOU MORE , HUH! 😏</h1>
+  <img src="cute-man.png" alt="Cute Man" />
+
+  <!-- Floating Emojis -->
+  <script>
+    const emojis = ['💖','💗','💓','💝','❣️'];
+    for (let i = 0; i < 30; i++) {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (8 + Math.random() * 5) + 's';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(emoji);
+    }
+
+    // Sound Effect
+    const audio = new Audio('love-sound.mp3'); // Place this file in the same folder
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        console.log("Autoplay blocked. User interaction required.");
+      });
+    });
+  </script>
+</body>
+</html>
